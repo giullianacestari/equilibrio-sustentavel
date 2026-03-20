@@ -1,147 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terra do Amanhã | Acessibilidade e Sustentabilidade</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --agro-deep-green: #0F1F15; /* Escurecido para melhor contraste */
-            --agro-earth: #3D3328;
-            --agro-leaf: #4A634E;
-            --agro-gold: #A67C00; /* Dourado mais escuro para leitura em fundo claro */
-            --bg-primary: #F9F7F2;
-            --text-main: #1A1A1A;
-            --font-size-base: 16px;
-        }
-
-        .dark-mode {
-            --bg-primary: #0F1F15;
-            --text-main: #F9F7F2;
-            --agro-gold: #FFD700;
-            --agro-deep-green: #F9F7F2;
-        }
-
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            font-size: var(--font-size-base);
-            overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        h1, h2, .serif {
-            font-family: 'Playfair Display', serif;
-            color: var(--agro-deep-green);
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .hero-gradient {
-            background: linear-gradient(to bottom, rgba(15, 31, 21, 0.85), var(--bg-primary)),
-                        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2000');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-        }
-
-        /* Menu de Acessibilidade */
-        .accessibility-menu {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 10000;
-        }
-
-        .acc-button {
-            background: var(--agro-deep-green);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            cursor: pointer;
-            border: 2px solid var(--agro-gold);
-        }
-
-        .acc-panel {
-            position: absolute;
-            bottom: 60px;
-            right: 0;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            display: none;
-            width: 250px;
-            border: 1px solid #ddd;
-        }
-
-        .dark-mode .acc-panel {
-            background: #1a1a1a;
-            color: white;
-            border-color: #333;
-        }
-
-        .acc-panel.show { display: block; }
-
-        .acc-option {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .btn-small {
-            background: #eee;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .dark-mode .btn-small { background: #333; color: white; }
-
-        .data-card {
-            border-left: 5px solid var(--agro-gold);
-            padding-left: 1.5rem;
-            background: rgba(166, 124, 0, 0.05);
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-
-        .reading-active {
-            outline: 3px solid var(--agro-gold);
-            background: rgba(212, 175, 55, 0.1);
-        }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- Botão de Acessibilidade -->
     <div class="accessibility-menu">
         <button class="acc-button" onclick="toggleAccPanel()" aria-label="Abrir menu de acessibilidade">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v8" />
+                <path d="M8 12h8" />
+            </svg>
         </button>
         <div class="acc-panel" id="accPanel">
             <h3 class="font-bold mb-4 border-bottom pb-2">Acessibilidade</h3>
-            
+
             <div class="acc-option">
                 <span>Fonte</span>
                 <div class="flex gap-2">
@@ -166,9 +51,12 @@
     <header class="hero-gradient flex flex-col items-center justify-center text-center px-4 relative">
         <div class="reveal">
             <span class="uppercase tracking-[0.3em] text-sm mb-4 block text-white font-bold">O Futuro da Terra</span>
-            <h1 class="text-5xl md:text-8xl text-white mb-6">Equilíbrio <br><i class="font-light text-agro-gold">Sustentável</i></h1>
-            <p class="max-w-xl text-white text-lg md:text-xl mx-auto font-medium leading-relaxed bg-black/20 p-4 rounded-lg backdrop-blur-sm">
-                Como a inovação tecnológica está permitindo que a produção de alimentos caminhe lado a lado com a regeneração do nosso planeta.
+            <h1 class="text-5xl md:text-8xl text-white mb-6">Equilíbrio <br><i
+                    class="font-light text-agro-gold">Sustentável</i></h1>
+            <p
+                class="max-w-xl text-white text-lg md:text-xl mx-auto font-medium leading-relaxed bg-black/20 p-4 rounded-lg backdrop-blur-sm">
+                Como a inovação tecnológica está permitindo que a produção de alimentos caminhe lado a lado com a
+                regeneração do nosso planeta.
             </p>
         </div>
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white scroll-indicator">
@@ -183,15 +71,21 @@
                 <div class="reveal">
                     <h2 class="text-4xl mb-8 leading-tight font-bold">Alimentar um mundo em constante crescimento.</h2>
                     <p class="text-lg mb-6 leading-relaxed">
-                        Até 2050, a população global deve chegar a 9,7 bilhões de pessoas. Segundo a <b>FAO (Organização das Nações Unidas para a Alimentação e a Agricultura)</b>, precisaremos de um aumento de 60% na produção de alimentos para suprir essa demanda.
+                        Até 2050, a população global deve chegar a 9,7 bilhões de pessoas. Segundo a <b>FAO (Organização
+                            das Nações Unidas para a Alimentação e a Agricultura)</b>, precisaremos de um aumento de 60%
+                        na produção de alimentos para suprir essa demanda.
                     </p>
                     <div class="data-card mb-8">
-                        <p class="text-xs uppercase tracking-wider font-bold opacity-70 mb-2">Fonte: FAO / Global Harvest Initiative</p>
-                        <p class="text-xl italic font-semibold">"O desafio não é apenas produzir mais, mas produzir melhor."</p>
+                        <p class="text-xs uppercase tracking-wider font-bold opacity-70 mb-2">Fonte: FAO / Global
+                            Harvest Initiative</p>
+                        <p class="text-xl italic font-semibold">"O desafio não é apenas produzir mais, mas produzir
+                            melhor."</p>
                     </div>
                 </div>
                 <div class="reveal">
-                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=800" alt="Vista aérea de uma plantação organizada com tecnologia de drones" class="rounded-lg shadow-xl border-4 border-white">
+                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=800"
+                        alt="Vista aérea de uma plantação organizada com tecnologia de drones"
+                        class="rounded-lg shadow-xl border-4 border-white">
                 </div>
             </div>
         </section>
@@ -210,26 +104,30 @@
         <section class="py-32 px-6 md:px-24 bg-white dark:bg-zinc-900 readable-section">
             <div class="max-w-4xl mx-auto text-center mb-24 reveal">
                 <h2 class="text-4xl mb-6 italic font-bold">A Ciência da Regeneração</h2>
-                <p class="text-lg font-medium">No Brasil, o Plano ABC+ (Agricultura de Baixa Emissão de Carbono) estabelece metas para a descarbonização do setor produtivo.</p>
+                <p class="text-lg font-medium">No Brasil, o Plano ABC+ (Agricultura de Baixa Emissão de Carbono)
+                    estabelece metas para a descarbonização do setor produtivo.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-12">
                 <div class="reveal p-6 border border-gray-100 rounded-xl shadow-sm">
                     <div class="text-5xl text-agro-gold mb-4 font-bold serif">35M+</div>
                     <h3 class="text-xl font-bold mb-3">Hectares Recuperados</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Meta de recuperação de pastagens degradadas, transformando solos em sumidouros de carbono.</p>
+                    <p class="text-gray-600 dark:text-gray-300">Meta de recuperação de pastagens degradadas,
+                        transformando solos em sumidouros de carbono.</p>
                     <p class="text-xs mt-6 font-bold opacity-50">Fonte: MAPA / Plano ABC+</p>
                 </div>
                 <div class="reveal delay-150 p-6 border border-gray-100 rounded-xl shadow-sm">
                     <div class="text-5xl text-agro-gold mb-4 font-bold serif">ILPF</div>
                     <h3 class="text-xl font-bold mb-3">Sinergia Perfeita</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Integração Lavoura-Pecuária-Floresta: várias camadas produtivas otimizando o uso do solo.</p>
+                    <p class="text-gray-600 dark:text-gray-300">Integração Lavoura-Pecuária-Floresta: várias camadas
+                        produtivas otimizando o uso do solo.</p>
                     <p class="text-xs mt-6 font-bold opacity-50">Fonte: Embrapa</p>
                 </div>
                 <div class="reveal delay-300 p-6 border border-gray-100 rounded-xl shadow-sm">
                     <div class="text-5xl text-agro-gold mb-4 font-bold serif">-1,1B</div>
                     <h3 class="text-xl font-bold mb-3">Toneladas de CO2</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Estimativa de mitigação de emissões de gases de efeito estufa através de tecnologias sustentáveis.</p>
+                    <p class="text-gray-600 dark:text-gray-300">Estimativa de mitigação de emissões de gases de efeito
+                        estufa através de tecnologias sustentáveis.</p>
                     <p class="text-xs mt-6 font-bold opacity-50">Fonte: Plano ABC+ 2030</p>
                 </div>
             </div>
@@ -240,89 +138,14 @@
         <div class="reveal">
             <h2 class="serif text-3xl mb-8 text-white">Cultive o Amanhã</h2>
             <p class="text-sm text-white/60 mb-8 max-w-lg mx-auto">
-                Referências: FAO Statistical Yearbook, Relatórios Técnicos Embrapa, Plano Setorial ABC+ do Ministério da Agricultura.
+                Referências: FAO Statistical Yearbook, Relatórios Técnicos Embrapa, Plano Setorial ABC+ do Ministério da
+                Agricultura.
             </p>
             <div class="w-24 h-[2px] bg-agro-gold mx-auto"></div>
         </div>
     </footer>
 
-    <script>
-        // Acessibilidade: Painel
-        function toggleAccPanel() {
-            document.getElementById('accPanel').classList.toggle('show');
-        }
-
-        // Acessibilidade: Tamanho da Fonte
-        let currentFontSize = 16;
-        function changeFontSize(delta) {
-            currentFontSize += delta;
-            if(currentFontSize < 12) currentFontSize = 12;
-            if(currentFontSize > 24) currentFontSize = 24;
-            document.documentElement.style.setProperty('--font-size-base', currentFontSize + 'px');
-        }
-
-        // Acessibilidade: Dark Mode
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-
-        // Acessibilidade: Leitura de Voz
-        let synth = window.speechSynthesis;
-        let isReading = false;
-
-        function toggleReading() {
-            if (isReading) {
-                synth.cancel();
-                isReading = false;
-                document.getElementById('readBtn').innerText = "Ouvir Site";
-                document.querySelectorAll('.reading-active').forEach(el => el.classList.remove('reading-active'));
-            } else {
-                isReading = true;
-                document.getElementById('readBtn').innerText = "Parar Leitura";
-                readNextSection(0);
-            }
-        }
-
-        function readNextSection(index) {
-            const sections = document.querySelectorAll('.readable-section');
-            if (index >= sections.length || !isReading) {
-                isReading = false;
-                document.getElementById('readBtn').innerText = "Ouvir Site";
-                return;
-            }
-
-            const text = sections[index].innerText;
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'pt-BR';
-            utterance.rate = 1.0;
-
-            sections[index].classList.add('reading-active');
-            
-            utterance.onend = () => {
-                sections[index].classList.remove('reading-active');
-                readNextSection(index + 1);
-            };
-
-            synth.speak(utterance);
-        }
-
-        // Animação de Revelação
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("active");
-                }
-            });
-        }, { threshold: 0.15 });
-
-        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
-
-        // Fechar painel ao clicar fora
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.accessibility-menu')) {
-                document.getElementById('accPanel').classList.remove('show');
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
