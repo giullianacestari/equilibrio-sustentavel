@@ -6,32 +6,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terra do Amanhã | Acessibilidade e Sustentabilidade</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Ajuste de contraste para o modo claro */
+            --agro-green-dark: #0a140e;
+            --agro-gold-safe: #856404; /* Versão mais escura para contraste 4.5:1 em fundo branco */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Cores Customizadas */
+        .text-agro-gold { color: var(--agro-gold-safe); }
+        .hero-gradient {
+            background: linear-gradient(rgba(10, 20, 14, 0.7), rgba(10, 20, 14, 0.85)), 
+                        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Acessibilidade: Painel */
+        .accessibility-menu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .acc-button {
+            background: var(--agro-green-dark);
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .acc-panel {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 12px;
+            width: 250px;
+            display: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            color: #1a202c;
+        }
+
+        .acc-panel.show { display: block; }
+
+        .acc-option {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .btn-small {
+            background: #edf2f7;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Modo Escuro */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f7fafc;
+        }
+
+        .dark-mode .acc-panel { background: #1e1e1e; color: white; border-color: #333; }
+        .dark-mode .btn-small { background: #333; color: white; }
+        .dark-mode .bg-white { background-color: #1a1a1a !important; }
+        .dark-mode .text-gray-600 { color: #cbd5e0 !important; }
+        .dark-mode .text-agro-gold { color: #f6e05e; }
+
+        /* Animações Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Destaque na Leitura */
+        .reading-active {
+            outline: 3px solid var(--agro-gold-safe);
+            background: rgba(133, 100, 4, 0.1);
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Botão de Acessibilidade -->
+    <!-- Menu de Acessibilidade -->
     <div class="accessibility-menu">
         <button class="acc-button" onclick="toggleAccPanel()" aria-label="Abrir menu de acessibilidade">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 8v8" />
-                <path d="M8 12h8" />
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
         </button>
         <div class="acc-panel" id="accPanel">
-            <h3 class="font-bold mb-4 border-bottom pb-2">Acessibilidade</h3>
+            <h3 class="font-bold mb-4 border-b pb-2">Acessibilidade</h3>
 
             <div class="acc-option">
                 <span>Fonte</span>
                 <div class="flex gap-2">
-                    <button class="btn-small" onclick="changeFontSize(-1)">A-</button>
-                    <button class="btn-small" onclick="changeFontSize(1)">A+</button>
+                    <button class="btn-small" onclick="changeFontSize(-2)">A-</button>
+                    <button class="btn-small" onclick="changeFontSize(2)">A+</button>
                 </div>
             </div>
 
@@ -48,19 +144,13 @@
     </div>
 
     <!-- Hero Section -->
-    <header class="hero-gradient flex flex-col items-center justify-center text-center px-4 relative">
+    <header class="hero-gradient flex flex-col items-center justify-center text-center px-4 relative h-[85vh]">
         <div class="reveal">
             <span class="uppercase tracking-[0.3em] text-sm mb-4 block text-white font-bold">O Futuro da Terra</span>
-            <h1 class="text-5xl md:text-8xl text-white mb-6">Equilíbrio <br><i
-                    class="font-light text-agro-gold">Sustentável</i></h1>
-            <p
-                class="max-w-xl text-white text-lg md:text-xl mx-auto font-medium leading-relaxed bg-black/20 p-4 rounded-lg backdrop-blur-sm">
-                Como a inovação tecnológica está permitindo que a produção de alimentos caminhe lado a lado com a
-                regeneração do nosso planeta.
+            <h1 class="text-5xl md:text-8xl text-white mb-6">Equilíbrio <br><i class="font-light text-yellow-500">Sustentável</i></h1>
+            <p class="max-w-xl text-white text-lg md:text-xl mx-auto font-medium leading-relaxed bg-black/30 p-4 rounded-lg backdrop-blur-sm">
+                Como a inovação tecnológica está permitindo que a produção de alimentos caminhe lado a lado com a regeneração do nosso planeta.
             </p>
-        </div>
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white scroll-indicator">
-            <div class="w-[2px] h-12 bg-white/50 mx-auto"></div>
         </div>
     </header>
 
@@ -70,30 +160,26 @@
             <div class="grid md:grid-cols-2 gap-16 items-center">
                 <div class="reveal">
                     <h2 class="text-4xl mb-8 leading-tight font-bold">Alimentar um mundo em constante crescimento.</h2>
-                    <p class="text-lg mb-6 leading-relaxed">
-                        Até 2050, a população global deve chegar a 9,7 bilhões de pessoas. Segundo a <b>FAO (Organização
-                            das Nações Unidas para a Alimentação e a Agricultura)</b>, precisaremos de um aumento de 60%
-                        na produção de alimentos para suprir essa demanda.
+                    <p class="text-lg mb-6 leading-relaxed text-gray-700 dark:text-gray-300">
+                        Até 2050, a população global deve chegar a 9,7 bilhões de pessoas. Segundo a <b>FAO</b>, precisaremos de um aumento de 60% na produção de alimentos.
                     </p>
-                    <div class="data-card mb-8">
-                        <p class="text-xs uppercase tracking-wider font-bold opacity-70 mb-2">Fonte: FAO / Global
-                            Harvest Initiative</p>
-                        <p class="text-xl italic font-semibold">"O desafio não é apenas produzir mais, mas produzir
-                            melhor."</p>
+                    <div class="p-6 bg-gray-50 dark:bg-zinc-800 rounded-xl border-l-4 border-yellow-600 mb-8">
+                        <p class="text-xs uppercase tracking-wider font-bold opacity-70 mb-2">Fonte: FAO / Global Harvest Initiative</p>
+                        <p class="text-xl italic font-semibold">"O desafio não é apenas produzir mais, mas produzir melhor."</p>
                     </div>
                 </div>
                 <div class="reveal">
                     <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=800"
-                        alt="Vista aérea de uma plantação organizada com tecnologia de drones"
-                        class="rounded-lg shadow-xl border-4 border-white">
+                        alt="Plantação tecnológica"
+                        class="rounded-lg shadow-xl border-4 border-white dark:border-zinc-700">
                 </div>
             </div>
         </section>
 
         <!-- Quote -->
-        <section class="bg-[#0F1F15] py-24 text-center readable-section">
+        <section class="bg-[#0a140e] py-24 text-center readable-section">
             <div class="reveal px-6">
-                <p class="text-agro-gold uppercase tracking-widest text-sm font-bold mb-6">Visão Agro 2030</p>
+                <p class="text-yellow-500 uppercase tracking-widest text-sm font-bold mb-6">Visão Agro 2030</p>
                 <blockquote class="text-white text-3xl md:text-5xl max-w-4xl mx-auto leading-tight italic font-serif">
                     "A tecnologia é o fertilizante da sustentabilidade. Com dados, somos guardiões da terra."
                 </blockquote>
@@ -104,48 +190,126 @@
         <section class="py-32 px-6 md:px-24 bg-white dark:bg-zinc-900 readable-section">
             <div class="max-w-4xl mx-auto text-center mb-24 reveal">
                 <h2 class="text-4xl mb-6 italic font-bold">A Ciência da Regeneração</h2>
-                <p class="text-lg font-medium">No Brasil, o Plano ABC+ (Agricultura de Baixa Emissão de Carbono)
-                    estabelece metas para a descarbonização do setor produtivo.</p>
+                <p class="text-lg font-medium text-gray-600 dark:text-gray-300">No Brasil, o Plano ABC+ estabelece metas para a descarbonização do setor produtivo.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-12">
-                <div class="reveal p-6 border border-gray-100 rounded-xl shadow-sm">
+                <div class="reveal p-8 border border-gray-100 dark:border-zinc-800 rounded-xl shadow-sm">
                     <div class="text-5xl text-agro-gold mb-4 font-bold serif">35M+</div>
                     <h3 class="text-xl font-bold mb-3">Hectares Recuperados</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Meta de recuperação de pastagens degradadas,
-                        transformando solos em sumidouros de carbono.</p>
-                    <p class="text-xs mt-6 font-bold opacity-50">Fonte: MAPA / Plano ABC+</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Meta de recuperação de pastagens degradadas, transformando solos em sumidouros de carbono.</p>
                 </div>
-                <div class="reveal delay-150 p-6 border border-gray-100 rounded-xl shadow-sm">
+                <div class="reveal delay-150 p-8 border border-gray-100 dark:border-zinc-800 rounded-xl shadow-sm">
                     <div class="text-5xl text-agro-gold mb-4 font-bold serif">ILPF</div>
                     <h3 class="text-xl font-bold mb-3">Sinergia Perfeita</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Integração Lavoura-Pecuária-Floresta: várias camadas
-                        produtivas otimizando o uso do solo.</p>
-                    <p class="text-xs mt-6 font-bold opacity-50">Fonte: Embrapa</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Integração Lavoura-Pecuária-Floresta: várias camadas produtivas otimizando o solo.</p>
                 </div>
-                <div class="reveal delay-300 p-6 border border-gray-100 rounded-xl shadow-sm">
+                <div class="reveal delay-300 p-8 border border-gray-100 dark:border-zinc-800 rounded-xl shadow-sm">
                     <div class="text-5xl text-agro-gold mb-4 font-bold serif">-1,1B</div>
                     <h3 class="text-xl font-bold mb-3">Toneladas de CO2</h3>
-                    <p class="text-gray-600 dark:text-gray-300">Estimativa de mitigação de emissões de gases de efeito
-                        estufa através de tecnologias sustentáveis.</p>
-                    <p class="text-xs mt-6 font-bold opacity-50">Fonte: Plano ABC+ 2030</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Estimativa de mitigação de emissões de gases de efeito estufa via tecnologia.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-[#0F1F15] py-20 px-6 text-white text-center">
+    <footer class="bg-[#0a140e] py-20 px-6 text-white text-center">
         <div class="reveal">
-            <h2 class="serif text-3xl mb-8 text-white">Cultive o Amanhã</h2>
-            <p class="text-sm text-white/60 mb-8 max-w-lg mx-auto">
-                Referências: FAO Statistical Yearbook, Relatórios Técnicos Embrapa, Plano Setorial ABC+ do Ministério da
-                Agricultura.
-            </p>
-            <div class="w-24 h-[2px] bg-agro-gold mx-auto"></div>
+            <h2 class="serif text-3xl mb-8">Cultive o Amanhã</h2>
+            <div class="w-24 h-[2px] bg-yellow-600 mx-auto"></div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // --- CORREÇÃO DO JAVASCRIPT ---
+
+        // 1. Painel de Acessibilidade
+        function toggleAccPanel() {
+            const panel = document.getElementById('accPanel');
+            panel.classList.toggle('show');
+        }
+
+        // 2. Tamanho da Fonte (Ajustando a raiz do documento em %)
+        let currentFontSize = 100; // 100% = 16px padrão
+        function changeFontSize(delta) {
+            currentFontSize += delta * 5; // Muda em passos de 5%
+            if (currentFontSize < 70) currentFontSize = 70;
+            if (currentFontSize > 150) currentFontSize = 150;
+            document.documentElement.style.fontSize = currentFontSize + '%';
+        }
+
+        // 3. Modo Escuro
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // 4. Leitura de Voz
+        let synth = window.speechSynthesis;
+        let isReading = false;
+        let currentUtterance = null;
+
+        function toggleReading() {
+            if (isReading) {
+                synth.cancel();
+                stopReadingState();
+            } else {
+                isReading = true;
+                document.getElementById('readBtn').innerText = "Parar Leitura";
+                readNextSection(0);
+            }
+        }
+
+        function stopReadingState() {
+            isReading = false;
+            document.getElementById('readBtn').innerText = "Ouvir Site";
+            document.querySelectorAll('.reading-active').forEach(el => el.classList.remove('reading-active'));
+        }
+
+        function readNextSection(index) {
+            const sections = document.querySelectorAll('.readable-section');
+            if (index >= sections.length || !isReading) {
+                stopReadingState();
+                return;
+            }
+
+            const text = sections[index].innerText;
+            currentUtterance = new SpeechSynthesisUtterance(text);
+            currentUtterance.lang = 'pt-BR';
+            currentUtterance.rate = 1.0;
+
+            // Feedback visual
+            sections[index].classList.add('reading-active');
+            sections[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            currentUtterance.onend = () => {
+                sections[index].classList.remove('reading-active');
+                if (isReading) readNextSection(index + 1);
+            };
+
+            currentUtterance.onerror = () => stopReadingState();
+
+            synth.speak(currentUtterance);
+        }
+
+        // 5. Animação de Revelação (Scroll Reveal)
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+        // 6. Fechar painel ao clicar fora
+        document.addEventListener('click', (e) => {
+            const menu = document.querySelector('.accessibility-menu');
+            if (!menu.contains(e.target)) {
+                document.getElementById('accPanel').classList.remove('show');
+            }
+        });
+    </script>
 </body>
 
 </html>
